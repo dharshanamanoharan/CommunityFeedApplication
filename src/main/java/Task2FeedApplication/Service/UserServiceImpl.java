@@ -23,7 +23,7 @@ public class UserServiceImpl implements  UserService{
     public String register(UserModel userModel) {
         //Checking if userEmail exists already
         String mail = userModel.getEmail();
-        if (userRepository){
+        if (userRepository.findByUserName(userModel.getUserName())!=null){
             throw new NoResourceException("UserName exists already", HttpStatus.CONFLICT);
         } else {
             User user = new User();
