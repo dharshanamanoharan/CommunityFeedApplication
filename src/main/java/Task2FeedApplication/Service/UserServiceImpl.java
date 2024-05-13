@@ -23,11 +23,31 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     public String login(LoginModel loginModel) {
-        return null;
+        User user = userRepository.findByUserName(loginModel.getUserName());
+        if (user != null)
+        {
+            if (user.getPassword().equals(loginModel.getPassword()))
+            {
+                return "valid";
+            }
+            else
+            {
+                return "Invalid";
+            }
+        }
+        else
+        {
+            return "Invalid";
+        }
     }
 
     @Override
     public User fetchUser(String userName) {
-        return null;
+        User user = userRepository.findByUserName(userName);
+        if (user != null) {
+            return user;
+        } else {
+            return null;
+        }
     }
 }
