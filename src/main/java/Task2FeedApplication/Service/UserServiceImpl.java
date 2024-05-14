@@ -70,7 +70,9 @@ public class UserServiceImpl implements  UserService{
     }
     @Override
     public Posts fetchMyPost(Long userId) {
-        return null;
+       // User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(userId);
+        return myPost;
     }
 
     //Fetch User Posts

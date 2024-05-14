@@ -3,6 +3,7 @@ package Task2FeedApplication.Controller;
 import Task2FeedApplication.Entity.Posts;
 import Task2FeedApplication.Entity.User;
 import Task2FeedApplication.Model.LoginModel;
+import Task2FeedApplication.Model.PostsModel;
 import Task2FeedApplication.Model.UserModel;
 import Task2FeedApplication.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,6 @@ public class UserController {
             return new ResponseEntity<>("Login Failed", HttpStatus.BAD_REQUEST);
         }
     }
-
     //Fetch User
     @GetMapping("/user/{userName}")
     public ResponseEntity<User> fetchUser(@PathVariable String userName)
@@ -56,15 +56,34 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-
-    //Fetch User Post
+    //Fetch MyPost
     @GetMapping("user/myPosts/{userId}")
     public ResponseEntity<Posts> fetchMyPost(@PathVariable Long userId)
     {
         Posts myPost=userService.fetchMyPost(userId);
         return new ResponseEntity<>(myPost,HttpStatus.OK);
     }
-
+    //Create Post
+    @PutMapping("user/createPost")
+    public ResponseEntity<String> createPost(@RequestBody PostsModel postsModel)
+    {
+        String result=userService.createPost(postsModel);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+    //Update MyPost
+    @PutMapping("user/updatePost")
+    public ResponseEntity<String> updatePost(@RequestBody PostsModel postsModel)
+    {
+        String result=userService.updatePost(postsModel);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+    //Delete MyPost
+    @DeleteMapping("user/deleteMyPost")
+    public ResponseEntity<String> deletePost(@RequestBody PostsModel postsModel)
+    {
+        String result=userService.deletePost(postsModel);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
 
 
 }
