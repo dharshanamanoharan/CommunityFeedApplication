@@ -10,9 +10,9 @@ import Task2FeedApplication.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements  UserService{
@@ -75,14 +75,16 @@ public class UserServiceImpl implements  UserService{
     }
     //Fetch my post
     @Override
-    public Posts fetchMyPost(Long userId) {
-       // User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
-        Posts myPost=postsRepository.findByUserId(userId);
-        return myPost;
+    public List fetchMyPost(Long userId) {
+        User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(user);
+        return myPost.getFeedList();
     }
     //Create new post
     @Override
     public String createPost(PostsModel postsModel) {
+        //User user=userRepository.findById(postsModel.getUserId()).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        //Posts myPost=postsRepository.findByUserId(user.getId());
         Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         HashMap<String,String> map1=new HashMap<>();
@@ -101,6 +103,8 @@ public class UserServiceImpl implements  UserService{
     //Update post
     @Override
     public String updatePost(PostsModel postsModel) {
+        //User user=userRepository.findById(postsModel.getUserId()).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+       // Posts myPost=postsRepository.findByUserId(user.getId());
         Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         HashMap<String,String> map1=new HashMap<>();
@@ -120,6 +124,7 @@ public class UserServiceImpl implements  UserService{
     //Delete post
     @Override
     public String deletePost(PostsModel postsModel) {
+        //User user=userRepository.findById(postsModel.getUserId().getId()).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
         Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         int index1= Math.toIntExact(postsModel.getPostId());
@@ -129,5 +134,4 @@ public class UserServiceImpl implements  UserService{
         postsRepository.save(myPost);
         return "Post deleted Successfully!";
     }
-
 }

@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RequestMapping("/feed")
 @RestController
@@ -58,9 +60,9 @@ public class UserController {
     }
     //Fetch MyPost
     @GetMapping("user/myPosts/{userId}")
-    public ResponseEntity<Posts> fetchMyPost(@PathVariable Long userId)
+    public ResponseEntity<List> fetchMyPost(@PathVariable Long userId)
     {
-        Posts myPost=userService.fetchMyPost(userId);
+        List myPost=userService.fetchMyPost(userId);
         return new ResponseEntity<>(myPost,HttpStatus.OK);
     }
     //Create Post
@@ -84,6 +86,4 @@ public class UserController {
         String result=userService.deletePost(postsModel);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
-
-
 }
