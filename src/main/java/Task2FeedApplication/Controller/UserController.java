@@ -78,7 +78,7 @@ public class UserController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
     //Delete MyPost
-    @DeleteMapping("user/deleteMyPost/{userId}")
+    @DeleteMapping("user/deletePost/{userId}")
     public ResponseEntity<String> deletePost(@RequestBody PostsModel postsModel,@PathVariable Long userId)
     {
         String result=userService.deletePost(postsModel,userId);

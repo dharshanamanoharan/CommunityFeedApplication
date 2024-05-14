@@ -87,7 +87,7 @@ public class UserServiceImpl implements  UserService{
         Posts myPost=postsRepository.findByUserId(user);
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         HashMap<String,String> map1=new HashMap<>();
-        map1.put("userId", String.valueOf(postsModel.getUserId()));
+        map1.put("userId", postsModel.getUserId());
         map1.put("postId", String.valueOf(postsModel.getPostId()));
         map1.put("postDate",postsModel.getPostDate());
         map1.put("postCreator",postsModel.getPostCreator());
@@ -96,6 +96,7 @@ public class UserServiceImpl implements  UserService{
         list1=myPost.getFeedList();
         list1.add(map1);
         myPost.setFeedList(list1);
+        myPost.setPostCount(myPost.getPostCount()+1);
         postsRepository.save(myPost);
         return "Post created Successfully!";
     }
@@ -105,16 +106,14 @@ public class UserServiceImpl implements  UserService{
         User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
         Posts myPost=postsRepository.findByUserId(user);
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
-        HashMap<String,String> map1=new HashMap<>();
-        int index1= Math.toIntExact(Long.parseLong(postsModel.getPostId()));
-        map1.put("userId", String.valueOf(postsModel.getUserId()));
-        map1.put("postId", String.valueOf(postsModel.getPostId()));
-        map1.put("postDate",postsModel.getPostDate());
-        map1.put("postCreator",postsModel.getPostCreator());
-        map1.put("postDesc",postsModel.getPostDesc());
-        map1.put("postStatus",postsModel.getPostStatus());
+        int index1= postsModel.getPostId();
         list1=myPost.getFeedList();
-        list1.add(index1,map1);
+        list1.get(index1).put("userId", postsModel.getUserId());
+        list1.get(index1).put("postId", String.valueOf(postsModel.getPostId()));
+        list1.get(index1).put("postDate",postsModel.getPostDate());
+        list1.get(index1).put("postCreator",postsModel.getPostCreator());
+        list1.get(index1).put("postDesc",postsModel.getPostDesc());
+        list1.get(index1).put("postStatus",postsModel.getPostStatus());
         myPost.setFeedList(list1);
         postsRepository.save(myPost);
         return "Post updated Successfully!";
@@ -125,7 +124,7 @@ public class UserServiceImpl implements  UserService{
         User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
         Posts myPost=postsRepository.findByUserId(user);
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
-        int index1= Math.toIntExact(Long.parseLong(postsModel.getPostId()));
+        int index1= postsModel.getPostId();
         list1=myPost.getFeedList();
         list1.remove(index1);
         myPost.setFeedList(list1);

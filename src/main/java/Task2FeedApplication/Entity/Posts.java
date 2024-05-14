@@ -27,10 +27,14 @@ Posts {
     @JoinColumn(name="user_id",foreignKey = @ForeignKey (name="FK_USER_ID"))
     private User userId;
 
+    @Column
+    private int postCount;
+
     public Posts(User userId)
     {
         this.userId=userId;
         ArrayList<HashMap<String,String>> feed_list=new ArrayList<>();
         this.feedList=feed_list;
+        this.postCount=0;
     }
 }

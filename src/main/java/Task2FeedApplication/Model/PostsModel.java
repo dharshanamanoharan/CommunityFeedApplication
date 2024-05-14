@@ -5,7 +5,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostsModel {
-    private String postId;
+    private int postId;
     private String userId;
     private String postDate;
     private String postCreator;
