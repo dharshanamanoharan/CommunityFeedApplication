@@ -85,17 +85,49 @@ public class UserServiceImpl implements  UserService{
     public String createPost(PostsModel postsModel) {
         Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
-        return null;
+        HashMap<String,String> map1=new HashMap<>();
+        map1.put("userId", String.valueOf(postsModel.getUserId()));
+        map1.put("postId", String.valueOf(postsModel.getPostId()));
+        map1.put("postDate",postsModel.getPostDate());
+        map1.put("postCreator",postsModel.getPostCreator());
+        map1.put("postDesc",postsModel.getPostDesc());
+        map1.put("postStatus",postsModel.getPostStatus());
+        list1=myPost.getFeedList();
+        list1.add(map1);
+        myPost.setFeedList(list1);
+        postsRepository.save(myPost);
+        return "Post created Successfully!";
     }
     //Update post
     @Override
     public String updatePost(PostsModel postsModel) {
-        return null;
+        Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
+        ArrayList<HashMap<String,String>> list1=new ArrayList<>();
+        HashMap<String,String> map1=new HashMap<>();
+        int index1= Math.toIntExact(postsModel.getPostId());
+        map1.put("userId", String.valueOf(postsModel.getUserId()));
+        map1.put("postId", String.valueOf(postsModel.getPostId()));
+        map1.put("postDate",postsModel.getPostDate());
+        map1.put("postCreator",postsModel.getPostCreator());
+        map1.put("postDesc",postsModel.getPostDesc());
+        map1.put("postStatus",postsModel.getPostStatus());
+        list1=myPost.getFeedList();
+        list1.add(index1,map1);
+        myPost.setFeedList(list1);
+        postsRepository.save(myPost);
+        return "Post updated Successfully!";
     }
     //Delete post
     @Override
     public String deletePost(PostsModel postsModel) {
-        return null;
+        Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
+        ArrayList<HashMap<String,String>> list1=new ArrayList<>();
+        int index1= Math.toIntExact(postsModel.getPostId());
+        list1=myPost.getFeedList();
+        list1.remove(index1);
+        myPost.setFeedList(list1);
+        postsRepository.save(myPost);
+        return "Post deleted Successfully!";
     }
 
 }
