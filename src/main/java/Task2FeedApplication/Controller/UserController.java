@@ -1,6 +1,4 @@
 package Task2FeedApplication.Controller;
-
-import Task2FeedApplication.Entity.Posts;
 import Task2FeedApplication.Entity.User;
 import Task2FeedApplication.Model.LoginModel;
 import Task2FeedApplication.Model.PostsModel;
@@ -66,24 +64,24 @@ public class UserController {
         return new ResponseEntity<>(myPost,HttpStatus.OK);
     }
     //Create Post
-    @PutMapping("user/createPost")
-    public ResponseEntity<String> createPost(@RequestBody PostsModel postsModel)
+    @PostMapping("user/createPost/{userId}")
+    public ResponseEntity<String> createPost(@RequestBody PostsModel postsModel,@PathVariable Long userId)
     {
-        String result=userService.createPost(postsModel);
+        String result=userService.createPost(postsModel,userId);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
     //Update MyPost
-    @PutMapping("user/updatePost")
-    public ResponseEntity<String> updatePost(@RequestBody PostsModel postsModel)
+    @PutMapping("user/updatePost/{userId}")
+    public ResponseEntity<String> updatePost(@RequestBody PostsModel postsModel,@PathVariable Long userId)
     {
-        String result=userService.updatePost(postsModel);
+        String result=userService.updatePost(postsModel,userId);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
     //Delete MyPost
-    @DeleteMapping("user/deleteMyPost")
-    public ResponseEntity<String> deletePost(@RequestBody PostsModel postsModel)
+    @DeleteMapping("user/deleteMyPost/{userId}")
+    public ResponseEntity<String> deletePost(@RequestBody PostsModel postsModel,@PathVariable Long userId)
     {
-        String result=userService.deletePost(postsModel);
+        String result=userService.deletePost(postsModel,userId);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 }

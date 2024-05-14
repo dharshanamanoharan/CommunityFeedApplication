@@ -9,7 +9,7 @@ public interface UserService {
     String login(LoginModel loginModel);
     User fetchUser(String userName);
     List fetchMyPost(Long userId);
-    String createPost(PostsModel postsModel);
-    String updatePost(PostsModel postsModel);
-    String deletePost(PostsModel postsModel);
+    String createPost(PostsModel postsModel,Long userId);
+    String updatePost(PostsModel postsModel,Long userId);
+    String deletePost(PostsModel postsModel,Long userId);
 }

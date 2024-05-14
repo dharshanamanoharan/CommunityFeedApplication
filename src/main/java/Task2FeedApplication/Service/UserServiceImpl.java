@@ -82,10 +82,9 @@ public class UserServiceImpl implements  UserService{
     }
     //Create new post
     @Override
-    public String createPost(PostsModel postsModel) {
-        //User user=userRepository.findById(postsModel.getUserId()).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
-        //Posts myPost=postsRepository.findByUserId(user.getId());
-        Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
+    public String createPost(PostsModel postsModel,Long userId) {
+        User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(user);
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         HashMap<String,String> map1=new HashMap<>();
         map1.put("userId", String.valueOf(postsModel.getUserId()));
@@ -102,13 +101,12 @@ public class UserServiceImpl implements  UserService{
     }
     //Update post
     @Override
-    public String updatePost(PostsModel postsModel) {
-        //User user=userRepository.findById(postsModel.getUserId()).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
-       // Posts myPost=postsRepository.findByUserId(user.getId());
-        Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
+    public String updatePost(PostsModel postsModel,Long userId) {
+        User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(user);
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         HashMap<String,String> map1=new HashMap<>();
-        int index1= Math.toIntExact(postsModel.getPostId());
+        int index1= Math.toIntExact(Long.parseLong(postsModel.getPostId()));
         map1.put("userId", String.valueOf(postsModel.getUserId()));
         map1.put("postId", String.valueOf(postsModel.getPostId()));
         map1.put("postDate",postsModel.getPostDate());
@@ -123,11 +121,11 @@ public class UserServiceImpl implements  UserService{
     }
     //Delete post
     @Override
-    public String deletePost(PostsModel postsModel) {
-        //User user=userRepository.findById(postsModel.getUserId().getId()).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
-        Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
+    public String deletePost(PostsModel postsModel,Long userId) {
+        User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(user);
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
-        int index1= Math.toIntExact(postsModel.getPostId());
+        int index1= Math.toIntExact(Long.parseLong(postsModel.getPostId()));
         list1=myPost.getFeedList();
         list1.remove(index1);
         myPost.setFeedList(list1);
