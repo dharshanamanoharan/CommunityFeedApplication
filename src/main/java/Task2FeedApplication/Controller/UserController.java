@@ -1,5 +1,6 @@
 package Task2FeedApplication.Controller;
 
+import Task2FeedApplication.Entity.Posts;
 import Task2FeedApplication.Entity.User;
 import Task2FeedApplication.Model.LoginModel;
 import Task2FeedApplication.Model.UserModel;
@@ -13,11 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/feed")
 @RestController
 public class UserController {
-
     @Autowired
     UserService userService;
-
-
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserModel userModel)
     {
@@ -57,6 +55,14 @@ public class UserController {
         {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    //Fetch User Post
+    @GetMapping("user/myPosts/{userId}")
+    public ResponseEntity<Posts> fetchMyPost(@PathVariable Long userId)
+    {
+        Posts myPost=userService.fetchMyPost(userId);
+        return new ResponseEntity<>(myPost,HttpStatus.OK);
     }
 
 

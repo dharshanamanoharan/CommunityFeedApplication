@@ -9,5 +9,5 @@ public class PostsModel {
     private String postDate;
     private String postCreator;
     private String postDesc;
-    private String postStatus="pending";
+    private String postStatus;
 }
