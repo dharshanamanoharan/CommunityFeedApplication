@@ -8,6 +8,8 @@ import java.util.HashMap;
 @Getter
 @Setter
 public class PostsModel {
-    private Long id;
-    private ArrayList<HashMap<String,String>> feedList;
+    private Long postId;
+    private Long userId;
+    private String postDesc;
+    private String postStatus="pending";
 }
