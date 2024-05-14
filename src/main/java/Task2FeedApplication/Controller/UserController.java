@@ -45,7 +45,7 @@ public class UserController {
     }
 
     //Fetch User
-    @GetMapping("/profile/{userName}")
+    @GetMapping("/user/{userName}")
     public ResponseEntity<User> fetchUser(@PathVariable String userName)
     {
         User user=userService.fetchUser(userName);
