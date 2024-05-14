@@ -1,4 +1,5 @@
 package Task2FeedApplication.Controller;
+import Task2FeedApplication.Entity.Posts;
 import Task2FeedApplication.Entity.User;
 import Task2FeedApplication.Model.LoginModel;
 import Task2FeedApplication.Model.PostsModel;
@@ -58,9 +59,9 @@ public class UserController {
     }
     //Fetch MyPost
     @GetMapping("user/myPosts/{userId}")
-    public ResponseEntity<List> fetchMyPost(@PathVariable Long userId)
+    public ResponseEntity<Posts> fetchMyPost(@PathVariable Long userId)
     {
-        List myPost=userService.fetchMyPost(userId);
+        Posts myPost=userService.fetchMyPost(userId);
         return new ResponseEntity<>(myPost,HttpStatus.OK);
     }
     //Create Post

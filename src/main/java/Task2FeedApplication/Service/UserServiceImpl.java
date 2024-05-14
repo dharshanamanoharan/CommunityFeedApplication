@@ -75,10 +75,10 @@ public class UserServiceImpl implements  UserService{
     }
     //Fetch my post
     @Override
-    public List fetchMyPost(Long userId) {
+    public Posts fetchMyPost(Long userId) {
         User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
         Posts myPost=postsRepository.findByUserId(user);
-        return myPost.getFeedList();
+        return myPost;
     }
     //Create new post
     @Override
