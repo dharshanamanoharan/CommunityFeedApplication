@@ -1,14 +1,9 @@
 package Task2FeedApplication.Entity;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.WebProperties;
-
-import java.util.Set;
-
 @Getter
 @Setter
 @AllArgsConstructor
