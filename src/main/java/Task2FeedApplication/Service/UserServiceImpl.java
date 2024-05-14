@@ -2,6 +2,7 @@ package Task2FeedApplication.Service;
 import Task2FeedApplication.Entity.Posts;
 import Task2FeedApplication.Entity.User;
 import Task2FeedApplication.Model.LoginModel;
+import Task2FeedApplication.Model.PostsModel;
 import Task2FeedApplication.Model.UserModel;
 import Task2FeedApplication.NoResourceException;
 import Task2FeedApplication.Repository.PostsRepository;
@@ -9,6 +10,10 @@ import Task2FeedApplication.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @Service
 public class UserServiceImpl implements  UserService{
     @Autowired
@@ -68,13 +73,29 @@ public class UserServiceImpl implements  UserService{
             return null;
         }
     }
+    //Fetch my post
     @Override
     public Posts fetchMyPost(Long userId) {
        // User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
         Posts myPost=postsRepository.findByUserId(userId);
         return myPost;
     }
-
-    //Fetch User Posts
+    //Create new post
+    @Override
+    public String createPost(PostsModel postsModel) {
+        Posts myPost=postsRepository.findByUserId(postsModel.getUserId());
+        ArrayList<HashMap<String,String>> list1=new ArrayList<>();
+        return null;
+    }
+    //Update post
+    @Override
+    public String updatePost(PostsModel postsModel) {
+        return null;
+    }
+    //Delete post
+    @Override
+    public String deletePost(PostsModel postsModel) {
+        return null;
+    }
 
 }
