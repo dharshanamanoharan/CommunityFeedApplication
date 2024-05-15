@@ -11,6 +11,5 @@ public interface PostsRepository extends JpaRepository<Posts,Long> {
 
     Posts findByUserId(User userId);
 
-    ArrayList<ArrayList> findAllFeedList();
 }
 

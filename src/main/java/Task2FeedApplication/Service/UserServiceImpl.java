@@ -136,6 +136,7 @@ public class UserServiceImpl implements  UserService{
     @Override
     public List getAllPosts() {
         ArrayList list1=new ArrayList<>();
-        return list1;
+        List post1=postsRepository.findAll();
+        return post1;
     }
 }
