@@ -108,10 +108,10 @@ public class UserServiceImpl implements  UserService{
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         int index1= postsModel.getPostId();
         list1=myPost.getFeedList();
-        list1.get(index1).put("userId", postsModel.getUserId());
-        list1.get(index1).put("postId", String.valueOf(postsModel.getPostId()));
-        list1.get(index1).put("postDate",postsModel.getPostDate());
-        list1.get(index1).put("postCreator",postsModel.getPostCreator());
+        //list1.get(index1).put("userId", postsModel.getUserId());
+       // list1.get(index1).put("postId", String.valueOf(postsModel.getPostId()));
+        //list1.get(index1).put("postDate",postsModel.getPostDate());
+        //list1.get(index1).put("postCreator",postsModel.getPostCreator());
         list1.get(index1).put("postDesc",postsModel.getPostDesc());
         list1.get(index1).put("postStatus",postsModel.getPostStatus());
         myPost.setFeedList(list1);
@@ -126,7 +126,7 @@ public class UserServiceImpl implements  UserService{
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         int index1= postsModel.getPostId();
         list1=myPost.getFeedList();
-        list1.remove(index1);
+        list1.get(index1).put("postStatus","declined");
         myPost.setFeedList(list1);
         postsRepository.save(myPost);
         return "Post deleted Successfully!";
