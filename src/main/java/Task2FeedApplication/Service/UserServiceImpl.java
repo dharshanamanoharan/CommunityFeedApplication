@@ -132,11 +132,11 @@ public class UserServiceImpl implements  UserService{
         return "Post deleted Successfully!";
     }
 
+    //Fetching all posts
     @Override
     public List getAllPosts() {
-        return null;
+        List list1=postsRepository.findAllFeedList();
+        return list1;
     }
-
-    //Fetching all posts
 
 }
