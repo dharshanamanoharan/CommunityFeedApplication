@@ -16,5 +16,5 @@ public interface UserService {
     String updatePost(PostsModel postsModel,Long userId);
     String deletePost(PostsModel postsModel,Long userId);
 
-    ArrayList<ArrayList> getAllPosts();
+    List getAllPosts();
 }

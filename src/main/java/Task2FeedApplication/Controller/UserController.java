@@ -89,9 +89,9 @@ public class UserController {
 
     //Fetching All Posts
     @GetMapping("/allApprovedPosts")
-    public ResponseEntity<ArrayList<ArrayList>> getAllPosts()
+    public ResponseEntity<List> getAllPosts()
     {
-        ArrayList<ArrayList> allPosts=userService.getAllPosts();
+        List allPosts=userService.getAllPosts();
         return new ResponseEntity<>(allPosts,HttpStatus.OK);
     }
 }
