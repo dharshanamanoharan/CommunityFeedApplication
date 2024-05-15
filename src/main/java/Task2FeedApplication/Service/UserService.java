@@ -13,4 +13,6 @@ public interface UserService {
     String createPost(PostsModel postsModel,Long userId);
     String updatePost(PostsModel postsModel,Long userId);
     String deletePost(PostsModel postsModel,Long userId);
+
+    List getAllPosts();
 }

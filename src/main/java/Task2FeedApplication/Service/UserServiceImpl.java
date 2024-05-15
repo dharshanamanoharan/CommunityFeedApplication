@@ -131,4 +131,12 @@ public class UserServiceImpl implements  UserService{
         postsRepository.save(myPost);
         return "Post deleted Successfully!";
     }
+
+    @Override
+    public List getAllPosts() {
+        return null;
+    }
+
+    //Fetching all posts
+
 }

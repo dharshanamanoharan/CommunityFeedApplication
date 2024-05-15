@@ -85,4 +85,12 @@ public class UserController {
         String result=userService.deletePost(postsModel,userId);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
+
+    //Fetching All Posts
+    @GetMapping("/allApprovedPosts")
+    public ResponseEntity<List> getAllPosts()
+    {
+        List allPosts=userService.getAllPosts();
+        return new ResponseEntity<>(allPosts,HttpStatus.OK);
+    }
 }
