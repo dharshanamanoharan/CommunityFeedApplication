@@ -134,8 +134,8 @@ public class UserServiceImpl implements  UserService{
 
     //Fetching all posts
     @Override
-    public List getAllPosts() {
-        List list1=postsRepository.findAllFeedList();
+    public ArrayList<ArrayList> getAllPosts() {
+        ArrayList<ArrayList> list1=postsRepository.findAllFeedList();
         return list1;
     }
 

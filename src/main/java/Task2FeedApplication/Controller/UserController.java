@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -88,9 +89,9 @@ public class UserController {
 
     //Fetching All Posts
     @GetMapping("/allApprovedPosts")
-    public ResponseEntity<List> getAllPosts()
+    public ResponseEntity<ArrayList<ArrayList>> getAllPosts()
     {
-        List allPosts=userService.getAllPosts();
+        ArrayList<ArrayList> allPosts=userService.getAllPosts();
         return new ResponseEntity<>(allPosts,HttpStatus.OK);
     }
 }
