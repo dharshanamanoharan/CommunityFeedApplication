@@ -148,8 +148,8 @@ public class UserServiceImpl implements  UserService{
             int index1= Integer.parseInt(list1.get(i).get("postId"));
             if(index1 == postsModel.getPostId())
             {
-                list1.get(index1).put("postDesc",postsModel.getPostDesc());
-                list1.get(index1).put("postStatus",postsModel.getPostStatus());
+                list1.get(i).put("postDesc",postsModel.getPostDesc());
+                list1.get(i).put("postStatus",postsModel.getPostStatus());
             }
         }
         myPost.setFeedList(list1);
@@ -168,7 +168,7 @@ public class UserServiceImpl implements  UserService{
             int index1 = Integer.parseInt(list1.get(i).get("postId"));
             if(index1 == postsModel.getPostId())
             {
-                list1.remove(index1);
+                list1.remove(i);
             }
         }
         myPost.setFeedList(list1);
