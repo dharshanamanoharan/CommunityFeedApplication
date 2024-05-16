@@ -100,7 +100,7 @@ public class UserServiceImpl implements  UserService{
         postsRepository.save(myPost);
         return "Post created Successfully!";
     }
-    //Update post
+    /*//Update post
     @Override
     public String updatePost(PostsModel postsModel,Long userId) {
         User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
@@ -108,10 +108,6 @@ public class UserServiceImpl implements  UserService{
         ArrayList<HashMap<String,String>> list1=new ArrayList<>();
         int index1= postsModel.getPostId();
         list1=myPost.getFeedList();
-        //list1.get(index1).put("userId", postsModel.getUserId());
-       // list1.get(index1).put("postId", String.valueOf(postsModel.getPostId()));
-        //list1.get(index1).put("postDate",postsModel.getPostDate());
-        //list1.get(index1).put("postCreator",postsModel.getPostCreator());
         list1.get(index1).put("postDesc",postsModel.getPostDesc());
         list1.get(index1).put("postStatus",postsModel.getPostStatus());
         myPost.setFeedList(list1);
@@ -130,7 +126,7 @@ public class UserServiceImpl implements  UserService{
         myPost.setFeedList(list1);
         postsRepository.save(myPost);
         return "Post deleted Successfully!";
-    }
+    }*/
 
     //Fetching all posts
     @Override
@@ -138,5 +134,45 @@ public class UserServiceImpl implements  UserService{
         ArrayList list1=new ArrayList<>();
         List post1=postsRepository.findAll();
         return post1;
+    }
+
+    //Update post Alternate
+    @Override
+    public String updatePost1(PostsModel postsModel,Long userId) {
+        User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(user);
+        ArrayList<HashMap<String,String>> list1=new ArrayList<>();
+        list1=myPost.getFeedList();
+        for(int i=0;i< list1.size();i++)
+        {
+            int index1= Integer.parseInt(list1.get(i).get("postId"));
+            if(index1 == postsModel.getPostId())
+            {
+                list1.get(index1).put("postDesc",postsModel.getPostDesc());
+                list1.get(index1).put("postStatus",postsModel.getPostStatus());
+            }
+        }
+        myPost.setFeedList(list1);
+        postsRepository.save(myPost);
+        return "Post updated Successfully!";
+    }
+
+    @Override
+    public String deletePost1(PostsModel postsModel,Long userId) {
+        User user=userRepository.findById(userId).orElseThrow(()-> new NoResourceException("No User Exists",HttpStatus.NOT_FOUND));
+        Posts myPost=postsRepository.findByUserId(user);
+        ArrayList<HashMap<String,String>> list1=new ArrayList<>();
+        list1=myPost.getFeedList();
+        for(int i=0;i< list1.size();i++)
+        {
+            int index1 = Integer.parseInt(list1.get(i).get("postId"));
+            if(index1 == postsModel.getPostId())
+            {
+                list1.remove(index1);
+            }
+        }
+        myPost.setFeedList(list1);
+        postsRepository.save(myPost);
+        return "Post deleted Successfully!";
     }
 }

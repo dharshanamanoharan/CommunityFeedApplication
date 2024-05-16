@@ -76,14 +76,14 @@ public class UserController {
     @PutMapping("user/updatePost/{userId}")
     public ResponseEntity<String> updatePost(@RequestBody PostsModel postsModel,@PathVariable Long userId)
     {
-        String result=userService.updatePost(postsModel,userId);
+        String result=userService.updatePost1(postsModel,userId);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
     //Delete MyPost
     @DeleteMapping("user/deletePost/{userId}")
     public ResponseEntity<String> deletePost(@RequestBody PostsModel postsModel,@PathVariable Long userId)
     {
-        String result=userService.deletePost(postsModel,userId);
+        String result=userService.deletePost1(postsModel,userId);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 

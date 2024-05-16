@@ -13,8 +13,9 @@ public interface UserService {
     User fetchUser(String userName);
     Posts fetchMyPost(Long userId);
     String createPost(PostsModel postsModel,Long userId);
-    String updatePost(PostsModel postsModel,Long userId);
-    String deletePost(PostsModel postsModel,Long userId);
-
+    //String updatePost(PostsModel postsModel,Long userId);
+    //String deletePost(PostsModel postsModel,Long userId);
     List getAllPosts();
+    String updatePost1(PostsModel postsModel,Long userId);
+    String deletePost1(PostsModel postsModel,Long userId);
 }
